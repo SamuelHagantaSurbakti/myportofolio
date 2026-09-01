@@ -36,9 +36,6 @@ SECRET_KEY = "django-insecure-eszx6i3$7rg#q72omu_t!cpae*x4wg*&6^4lm+ze6$%dl8!p5f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1",'samuel-haganta-myportofolio.pws.cs.ui.ac.id']
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -162,4 +159,4 @@ MAILERS = {
 
 
 #Menambahkan URL deployment PWS ke ALLOWED_HOSTS
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "samuel-haganta-myportofolio.pws.cs.ui.ac.id>"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1",'samuel-haganta-myportofolio.pws.cs.ui.ac.id']
