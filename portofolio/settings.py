@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", '*']
 
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 
