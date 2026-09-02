@@ -180,21 +180,6 @@ h1, .brand {
     border-top: 1px solid var(--line);
 }
 
-.project-card {
-    display: grid;
-    gap: 8px;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.card-project img { 
-    width: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.animate-background::before{
-  animation: slide-in-bottom 1s ease-in-out both;
-}
 
 
 @media (max-width: 600px) {
