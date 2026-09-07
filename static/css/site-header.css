@@ -1,0 +1,35 @@
+.site-header {
+    background-color: #DEDED1;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
+    border-bottom: none; 
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+}
+
+.brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.site-header nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.site-header nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+}

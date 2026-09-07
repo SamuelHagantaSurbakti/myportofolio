@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}   
+}  
 
 :root {
     --ink: #1c1917;
@@ -15,57 +15,42 @@
 }
 
 body {
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Space Mono", monospace; 
     color: var(--ink);
     background-color: var(--paper);
+
+    /* BACKGROUND HAIKEI */
+    background-image: url('../img/background-haikei.svg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    /* AGAR HANYA SEBAGIAN BACKGROUND GAMBAR YANG DIGUNAKAN */
+    /* background-attachment: fixed;  */ 
+    
     line-height: 1.6;
 }
 
 h1, .brand {
-    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-family: "Space Grotesk", sans-serif;
 }
 
+/* MENYEMBUNYIKAN SCROLL BAR*/
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* LAYOUTTT CONTAINER */
 .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    max-width: 1200px; 
+    margin: 0 auto;  
+    padding: 0 1.5rem; 
 }
-
-
-
-
-.site-header {
-    border-bottom: 1px solid var(--line);
-}
-
-.site-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 1.5rem;
-}
-
-.brand {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--ink);
-    text-decoration: none;
-}
-
-.site-header nav {
-    display: flex;
-    gap: 2rem;
-}
-
-.site-header nav a {
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
 
 .hero {
-    padding: 4.5rem 0rem 10rem;
+    min-height: calc(100vh - 80px); 
+    display: flex;
+    align-items: center;
 }
 
 .hero-grid {
@@ -180,8 +165,6 @@ h1, .brand {
     border-top: 1px solid var(--line);
 }
 
-
-
 @media (max-width: 600px) {
     .hero-grid {
         grid-template-columns: 1fr;
@@ -198,5 +181,8 @@ h1, .brand {
     .social-links {
         justify-content: flex-start;
     }
-}
 
+    .project-card {
+        grid-template-columns: 1fr;
+    }
+}
