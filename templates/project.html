@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projek Saya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/project-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/site-header.css' %}">
+
+</head>
+<body>
+
+<header class="site-header">
+        <div class="container">
+            <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
+            <nav>
+                <a href="{% url 'main:show_main' %}">Profile</a>
+                <a href="{% url 'main:show_experience' %}">Experience</a>
+                <a href="{% url 'main:show_project' %}">Projek</a>
+            </nav>
+        </div>
+</header>
+
+    <main>
+        <section class="projects" style="padding-top: 3rem;">
+            <div class="container">
+                <h2>Projek Saya</h2>
+                
+                <div class="project-gallery">
+
+                    {% for project in project_list %}
+                        <a href="{% if project.project_link %}{{ project.project_link }}{% else %}#{% endif %}" class="project-item">
+                            <img src="{% static project.image_url %}" alt="{{ project.title }}" class="project-img">
+                            
+                            <div class="project-overlay">
+                                <h3>{{ project.title }}</h3>
+                                <!-- DEKSRIPSI -->
+                                <p style="color: var(--paper); font-size: 0.85rem; margin-bottom: 0.5rem; opacity: 0.9; padding: 0 1rem;">
+                                    {{ project.description }}
+                                </p>
+                                <p class="project-tech">{{ project.tech_stack }}</p>
+                                <span class="project-btn">Lihat Projek</span>
+                            </div>
+                        </a>
+                    
+                     <!-- JIKA KOSONG --> 
+                    {% empty %}
+                        <p style="color: var(--ink); text-align: center; grid-column: 1 / -1;">
+                            Belum ada projek yang ditambahkan.
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+        </div>
+    </footer>
+</body>
+</html>

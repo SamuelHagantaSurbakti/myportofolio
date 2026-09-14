@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from main.models import Experience
+from main.models import Project
 
 
 class MainTest(TestCase):
@@ -57,3 +58,41 @@ class MainTest(TestCase):
         self.assertContains(response, "Selesai")
         self.assertNotContains(response, "Sedang berlangsung")
         
+        
+class ProjectTest(TestCase):
+    def test_url_and_template_for_projects(self):
+        """
+        Menguji apakah URL dapat diakses dan menggunakan template yang tepat.
+        """
+        response = self.client.get(reverse('main:show_project'))
+        
+        self.assertEqual(response.status_code, 200)
+        
+        self.assertTemplateUsed(response, 'project.html')
+
+    def test_project_list_with_data(self):
+        """
+        Menguji apakah data model muncul di halaman HTML ketika ada data.
+        """
+        Project.objects.create(
+            title="SamTube",
+            description="Cloning aplikasi berbagi video",
+            tech_stack="HTML CSS JS",
+            image_url="img/SamTube.png",
+            project_link="https://holysinner21.github.io/Youtube-Lawass-Cloning/"
+        )
+        
+        response = self.client.get(reverse('main:show_project'))
+        
+        self.assertContains(response, "SamTube")
+        self.assertContains(response, "HTML CSS JS")
+
+    def test_project_list_empty_state(self):
+        """
+        Menguji apakah halaman HTML menampilkan pesan kondisi kosong ketika belum ada data.
+        """
+        Project.objects.all().delete()
+        
+        response = self.client.get(reverse('main:show_project'))
+        
+        self.assertContains(response, "Belum ada projek yang ditambahkan.")

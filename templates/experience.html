@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/project-style.css' %}">
     <link rel="stylesheet" href="{% static 'css/site-header.css' %}">
 </head>
 <body>
@@ -21,7 +20,7 @@
             <nav>
                 <a href="{% url 'main:show_main' %}">Profile</a>
                 <a href="{% url 'main:show_experience' %}">Experience</a>
-                <a href="#projects">Projek</a>
+                <a href="{% url 'main:show_project' %}">Projek</a>
             </nav>
         </div>
     </header>

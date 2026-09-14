@@ -18,6 +18,8 @@ body {
     font-family: "Space Mono", monospace; 
     color: var(--ink);
     background-color: var(--paper);
+    line-height: 1.6;
+
 
     /* BACKGROUND HAIKEI */
     background-image: url('../img/background-haikei.svg');
@@ -27,7 +29,13 @@ body {
     /* AGAR HANYA SEBAGIAN BACKGROUND GAMBAR YANG DIGUNAKAN */
     /* background-attachment: fixed;  */ 
     
-    line-height: 1.6;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column; 
+}
+
+main {
+    flex: 1; 
 }
 
 h1, .brand {
