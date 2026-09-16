@@ -34,7 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "samuel-haganta-myportofolio.pws.cs.ui.ac.id"]
 
 # CSRF Trusted Origins untuk PWS
-CSRF_TRUSTED_ORIGINS = ["https://samuel-haganta-myportofolio.pws.cs.ui.ac.id"]
+CSRF_TRUSTED_ORIGINS = ["https://samuel-haganta-myportofolio.pws.cs.ui.ac.id, https://localhost:8000"]
 
 # Application definition
 
