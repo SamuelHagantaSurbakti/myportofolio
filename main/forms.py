@@ -1,8 +1,20 @@
-from django.forms import ModelForm, TextInput, Textarea, URLInput
+from django.forms import ModelForm, TextInput, Textarea, URLInput, CharField, PasswordInput
 
 from main.models import Project
 
 class ProjectForm(ModelForm):
+    
+    secret_code = CharField(
+        label="Password",
+        required=True,
+        widget=PasswordInput(
+            attrs={
+                "placeholder": "Masukkann Pasword",
+                "class": "project-form__input", 
+            }
+        )
+    )
+    
     class Meta:
         model = Project
         fields = [
@@ -20,6 +32,8 @@ class ProjectForm(ModelForm):
             "project_url": "URL Proyek",
             "project_image_url": "URL Gambar Proyek",
         }
+        
+        
 
         widgets = {
             "title": TextInput(

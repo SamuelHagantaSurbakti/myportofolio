@@ -148,3 +148,5 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+SECRET_CODE = os.environ.get('PASSWORD')

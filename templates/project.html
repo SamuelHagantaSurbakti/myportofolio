@@ -1,17 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block meta %}
+    <title>Projects - {{ name }}</title>
+{% endblock meta %}
+
 {% block content %}
     <main>
 
         <section class="projects" style="padding-top: 3rem;">
             <div class="container">
-                <h2>Projek Saya</h2>
                 
-                <div class="project-gallery">
+                <div class="project-header">
+                    <h2>Projek Saya</h2>
+                    <a href="{% url 'main:create_project' %}"
+                       class="button project-add-button">
+                        <span aria-hidden="true">+</span>
+                        Tambah Proyek
+                    </a>
+                </div>
 
+                <form method="get"
+                      action="{% url 'main:show_project' %}"
+                      class="project-search">
+
+                    <input type="search"
+                            name="title"
+                            value="{{ title_query }}"
+                            placeholder="Cari berdasarkan nama proyek"
+                            class="project-search__input"
+                            aria-label="Cari berdasarkan nama proyek">
+                    <button type="submit" class="button">Cari</button>
+
+                </form>
+
+                <div class="project-gallery">
+                        
                     {% for project in project_list %}
-                        <a href="{% if project.project_link %}{{ project.project_link }}{% else %}#{% endif %}" class="project-item">
+                        <div class="project-item">
                             <img src="{% static project.image_url %}" alt="{{ project.title }}" class="project-img">
                             
                             <div class="project-overlay">
@@ -21,16 +48,28 @@
                                     {{ project.description }}
                                 </p>
                                 <p class="project-tech">{{ project.tech_stack }}</p>
-                                <span class="project-btn">Lihat Projek</span>
+
+                                <div class="project-card-actions">
+                                    <div class="project-actions">
+                                        {% if project.project_link %}
+                                            <a href="{{ project.project_link }}" class="button">Lihat Project</a>
+                                        {% endif %}
+                                        {% include "components/project_delete_modal.html" with project=project %}
+                                    </div>
+                                </div>
+                                
                             </div>
-                        </a>
+                        </div>
                     
                      <!-- JIKA KOSONG --> 
                     {% empty %}
-                        <p style="color: var(--ink); text-align: center; grid-column: 1 / -1;">
-                            Belum ada projek yang ditambahkan.
-                        </p>
+                        {% if title_query %}
+                            <p class="empty-state">Tidak ada proyek dengan nama tersebut.</p>
+                        {% else %}
+                            <p class="empty-state">Belum ada proyek yang ditambahkan.</p>
+                        {% endif %}
                     {% endfor %}
+
                 </div>
             </div>
         </section>
