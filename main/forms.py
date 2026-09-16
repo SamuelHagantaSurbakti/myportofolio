@@ -30,8 +30,8 @@ class ProjectForm(ModelForm):
             "title": "Nama Proyek",
             "description": "Deskripsi Proyek",
             "tech_stack": "Teknologi yang Digunakan",
-            "project_url": "URL Proyek",
-            "project_image_url": "URL Gambar Proyek",
+            "project_link": "URL Proyek",
+            "image_url": "URL Gambar Proyek",
         }
         
         

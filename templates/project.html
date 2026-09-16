@@ -39,7 +39,7 @@
                         
                     {% for project in project_list %}
                         <div class="project-item">
-                            <img src="{% static project.image_url %}" alt="{{ project.title }}" class="project-img">
+                            <img src="{{ project.image_url }}" alt="{{ project.title }}" class="project-img">
                             
                             <div class="project-overlay">
                                 <h3>{{ project.title }}</h3>
