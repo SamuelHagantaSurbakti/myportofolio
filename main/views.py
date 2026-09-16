@@ -51,6 +51,7 @@ def create_project(request):
     context = {
         "name": "Samuel Haganta Surbakti",
         "project_list": Project.objects.all(),
+        "form": form,
     }
     
     return render(request, "projects_form.html", context)
