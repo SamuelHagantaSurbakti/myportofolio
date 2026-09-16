@@ -11,6 +11,7 @@ class ProjectForm(ModelForm):
             attrs={
                 "placeholder": "Masukkann Pasword",
                 "class": "project-form__input", 
+                "autocomplete": "new-password",
             }
         )
     )
