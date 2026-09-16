@@ -5,6 +5,9 @@ from django.http import HttpResponse
 from django.template import context
 from django.conf import settings
 
+import os 
+SECRET_CODE = os.environ.get('PASSWORD')
+
 from main.models import Experience, Project
 from main.forms import ProjectForm
 
@@ -51,13 +54,14 @@ def show_project(request):
 
 
 def create_project(request):
+    
     form = ProjectForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
         
         input_code = form.cleaned_data.get("secret_code")
         
-        if input_code == settings.SECRET_CODE:
+        if input_code == SECRET_CODE:
             form.save()
             messages.success(request, "Proyek baru berhasil ditambahkan!")
             return redirect("main:show_project")

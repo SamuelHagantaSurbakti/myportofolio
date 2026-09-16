@@ -149,4 +149,3 @@ MAILERS = {
     },
 }
 
-SECRET_CODE = os.environ.get('PASSWORD')
