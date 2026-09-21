@@ -15,7 +15,7 @@
                 <div class="project-header">
                     <h2>Projek Saya</h2>
                     <a href="{% url 'main:create_project' %}"
-                       class="button project-add-button">
+                       class="button add-button">
                         <span aria-hidden="true">+</span>
                         Tambah Proyek
                     </a>
@@ -45,7 +45,7 @@
                                 <h3>{{ project.title }}</h3>
                                 <!-- DEKSRIPSI -->
                                 <p style="color: var(--paper); font-size: 0.85rem; margin-bottom: 0.5rem; opacity: 0.9; padding: 0 1rem;">
-                                    {{ project.description }}
+                                    {{ project.description }} 
                                 </p>
                                 <p class="project-tech">{{ project.tech_stack }}</p>
 
@@ -55,6 +55,10 @@
                                             <a href="{{ project.project_link }}" class="button">Lihat Project</a>
                                         {% endif %}
                                         {% include "components/project_delete_modal.html" with project=project %}
+
+                                        <a href="{% url 'main:edit_project' project.id %}" class="button edit-button">
+                                            Edit
+                                        </a>
                                     </div>
                                 </div>
                                 

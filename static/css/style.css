@@ -11,6 +11,7 @@
     --accent-dark: #a8442a;
     --line: #e3d9c9;
     --text-muted: #6b6459;
+    --edit-color: #006633;
     --radius: 4px;
 }
 
@@ -227,6 +228,69 @@ h1, .brand {
     font-weight: 600;
 }
 
+.experience-thumbnail-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    max-height: 250px; 
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.experience-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+}
+
+.experience-header {
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.project-header h1 {
+margin-bottom: 0;
+}
+
+.experience-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.experience-text-content {
+    flex: 1;
+}
+
+.experience-actions-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    min-width: 170px;
+}
+
+.experience-actions-side p {
+    margin: 0;
+    width: 100%;
+}
+
+.experience-actions-side .button,
+.experience-actions-side a.button,
+.experience-actions-side button.button {
+    width: 100%;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+}
+
 
 /* projects_form style */
 
@@ -289,6 +353,10 @@ h1, .brand {
     background: var(--ink);
 }
 
+.edit-button{
+    background: var(--edit-color);
+}
+
 
 @media (max-width: 600px) {
     .hero-grid {
@@ -329,13 +397,13 @@ margin-bottom: 1.5rem;
 margin-bottom: 0;
 }
 
-.project-add-button {
+.add-button {
 display: inline-flex;
 align-items: center;
 gap: 0.45rem;
 }
 
-.project-add-button span {
+.add-button span {
 font-size: 1.25rem;
 line-height: 1;
 }
@@ -389,7 +457,7 @@ display: none !important;
 margin-top: 0;
 }
 
-.project-delete-modal {
+.delete-modal {
 display: none;
 position: fixed;
 inset: 0;
@@ -406,11 +474,11 @@ align-items: center;
 justify-content: center;
 }
 
-.project-delete-modal:popover-open {
+.delete-modal:popover-open {
 display: flex;
 }
 
-.project-delete-modal__backdrop {
+.delete-modal__backdrop {
 position: absolute;
 inset: 0;
 width: 100%;
@@ -421,7 +489,7 @@ background: rgba(28, 25, 23, 0.58);
 cursor: default;
 }
 
-.project-delete-modal__content {
+.delete-modal__content {
 position: relative;
 z-index: 1;
 width: min(100%, 480px);
@@ -432,7 +500,7 @@ border-radius: var(--radius);
 box-shadow: 0 1rem 3rem rgba(28, 25, 23, 0.22);
 }
 
-.project-delete-modal__content h2 {
+.delete-modal__content h2 {
 margin: 0 0 0.75rem;
 font-family:
     "Space Grotesk",
@@ -441,7 +509,7 @@ font-family:
 font-size: 1.5rem;
 }
 
-.project-delete-modal__close {
+.delete-modal__close {
 position: absolute;
 top: 1rem;
 right: 1rem;
@@ -454,7 +522,7 @@ line-height: 1;
 cursor: pointer;
 }
 
-.project-delete-modal__actions {
+.delete-modal__actions {
 display: flex;
 justify-content: flex-end;
 gap: 0.75rem;
@@ -471,7 +539,7 @@ background: #b42318;
     flex-direction: column;
 }
 
-.project-add-button {
+.add-button {
     width: 100%;
     justify-content: center;
 }
@@ -484,22 +552,22 @@ background: #b42318;
     width: 100%;
 }
 
-.project-delete-modal {
+.delete-modal {
     align-items: flex-end;
     padding: 0;
 }
 
-.project-delete-modal__content {
+.delete-modal__content {
     width: 100%;
     padding: 1.25rem;
     border-radius: var(--radius) var(--radius) 0 0;
 }
 
-.project-delete-modal__actions {
+.delete-modal__actions {
     flex-direction: column-reverse;
 }
 
-.project-delete-modal__actions .button {
+.delete-modal__actions .button {
     width: 100%;
     text-align: center;
 }

@@ -1,6 +1,6 @@
-from django.forms import ModelForm, TextInput, Textarea, URLInput, CharField, PasswordInput
+from django.forms import ModelForm, TextInput, Textarea, URLInput, CharField, PasswordInput, Select, DateInput
 
-from main.models import Project
+from main.models import Project, Experience
 
 class ProjectForm(ModelForm):
     
@@ -9,7 +9,7 @@ class ProjectForm(ModelForm):
         required=True,
         widget=PasswordInput(
             attrs={
-                "placeholder": "Masukkann Pasword",
+                "placeholder": "Masukkann Password",
                 "class": "project-form__input", 
                 "autocomplete": "new-password",
             }
@@ -62,6 +62,75 @@ class ProjectForm(ModelForm):
             "image_url": URLInput(
                 attrs={
                     "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
+                }
+            ),
+        }
+        
+    
+class ExperienceForm(ModelForm):
+    secret_code = CharField(
+        label="Password",
+        required=True,
+        widget=PasswordInput(
+            attrs={
+                "placeholder": "Masukkan Password",
+                "class": "experience-form__input", 
+                "autocomplete": "new-password",
+            }
+        )
+    )
+    
+    class Meta:
+        model = Experience
+        fields = [
+            "title",
+            "description",
+            "category",
+            "thumbnail",
+            "started_at",
+            "ended_at",
+        ]
+
+        labels = {
+            "title": "Nama Experience",
+            "description": "Deskripsi Experience",
+            "category": "Kategori Experience",
+            "thumbnail": "URL Thumbnail Experience (16 : 9)",
+            "started_at": "Tanggal Dimulai",
+            "ended_at": "Tanggal Selesai",
+        }
+
+        widgets = {
+            "title": TextInput(
+                attrs={
+                    "placeholder": "Contoh: Software Engineer Intern",
+                    "maxlength": 255,
+                }
+            ),
+            "description": Textarea(
+                attrs={
+                    "placeholder": "Ceritakan peran dan kontribusimu...",
+                    "rows": 3,
+                }
+            ),
+            "category": Select( 
+                attrs={
+                    "class": "experience-form__select", 
+                }
+            ),
+            "thumbnail": URLInput( 
+                attrs={
+                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
+                }
+            ),
+            "started_at": DateInput( 
+                attrs={
+                    "type": "date"
+                }
+            ),
+            "ended_at": DateInput(
+                attrs={
+                    "type": "date", 
                 }
             ),
         }
