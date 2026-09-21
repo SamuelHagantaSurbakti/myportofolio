@@ -36,6 +36,39 @@ Kelas : PBP D
     karena makemigration yang akan mencatat perubahan dan migrate yang akan menerapkan perubahan ke database.
 
 
+
+### TUGAS 3
+
+1. Jelaskan mengapa kita menggunakan ModelForm pada Django alih-alih membuat form HTML secara manual. Selain itu, jelaskan pula mengapa kita diwajibkan menambahkan {% csrf_token %} pada form tersebut!
+
+    Setelah membaca beberapa sumber, alasan utama menggunakan ModelForm ternyata adalah karena aspek DRY (Dont Repeat Yourself). Maksudnya, karena kita sudah mendefinisikan atribut model dan batasan / constrain-nya tiap atributnya, kita tidak perlu lagi menentukan widgetnya. Namun, saya sadar kita tetap harus mendefinisikanya di tugas kali ini, saya berasumsi karena styling widget. Tak hanya ini, ModelForm juga digunakan karena alasan penyimpanan data yang instan ke database dengan menggunakan .save(). penggunaan  {% csrf_token %} diwajibkan karena alasan keamanan, spesifiknya "Cross-Site Request Forgery", yaitu pemalsuan authentication dengan penyalahgunaan cookie di browser. 
+
+2. Pada Tutorial 03, kita membahas format data JSON dan XML. Mengapa JSON lebih disukai dalam pengembangan aplikasi web modern dibandingkan XML?
+
+    Alasan JSON lebih disukai adalah karena ukuran yang jauh lebih ringkas, parser yang sangat cepat, integrasi yang native dengan JavaScript frontend, dan juga karena sifat bentuk datanya yang berupa objek dan gampang dibaca karena sebenarnya datanya hanyalah pasangan key-value.
+
+3. Jelaskan alur yang terjadi saat kamu menggunakan fungsi view untuk mengembalikan data portofoliomu dalam bentuk JSON. Mengapa kita perlu melakukan proses serialization pada model Django sebelum datanya dikembalikan?
+
+    ```
+    def get_projects_json(request):
+        title_query = request.GET.get("title", "").strip()
+        projects = Project.objects.all()
+
+        if title_query:
+            projects = projects.filter(title__icontains=title_query)
+
+        projects_json = serializers.serialize("json", projects)
+        return HttpResponse(projects_json, content_type="application/json")
+    ```
+
+    - request client yang dipetakan ke fungsi get_projects_json ditangkap 
+    - data diambil dari database langsung
+    - lalu melakukan Serialization (pengubahan format data ke JSON)
+    - memberikan respons berupa HttpResponse yang berisi aplikasi yang hanya berisikan data projek dengan format JSON
+
+    Serialization harus dilakukan karena alasan tipe data yang cocok, data yang dikirim dari database bertipe objek QuerySet yang tidak bisa dikirim melalui HttpResponse, tetapi sebaliknya dengan JSON, Httpresponse mendukung data bertipe JSON. Hal lain dan mungkin yang utama addalah karena JSON adalah format data yang universal yang digunakan untuk data delivery melalui internet.
+
+
 ### AI disclosure 
 Saya menggunakan AI khususnya model Gemini 3.1 Pro untuk membantu saya dalam mengerjakan tugas kedua ini. Saya menggunakan AI untuk membantu saya dalam mengatasi error dan menggenerate sebagian dari kode html.
 
