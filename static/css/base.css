@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}  
+
+:root {
+    --ink: #1c1917;
+    --paper: #faf6f0;
+    --accent: #d95d39;
+    --accent-dark: #a8442a;
+    --line: #e3d9c9;
+    --text-muted: #6b6459;
+    --edit-color: #006633;
+    --radius: 4px;
+}
+
+body {
+    font-family: "Space Mono", monospace; 
+    color: var(--ink);
+    background-color: var(--paper);
+    line-height: 1.6;
+
+
+    /* BACKGROUND HAIKEI */
+    background-image: url('../img/background-haikei.svg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    /* AGAR HANYA SEBAGIAN BACKGROUND GAMBAR YANG DIGUNAKAN */
+    background-attachment: fixed;  
+    
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column; 
+}
+
+main {
+    flex: 1; 
+}
+
+h1, .brand {
+    font-family: "Space Grotesk", sans-serif;
+}
+
+/* MENYEMBUNYIKAN SCROLL BAR*/
+::-webkit-scrollbar {
+    display: none;
+}

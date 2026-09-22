@@ -11,7 +11,7 @@
                 <h1>Add New Projects</h1>
                 <form method="post"
                       action="{% url 'main:create_project' %}"
-                      class="project-form">
+                      class="form">
                     {% csrf_token %}
                     {% for field in form %}
                         <div class="form-group">

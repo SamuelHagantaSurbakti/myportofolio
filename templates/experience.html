@@ -22,6 +22,20 @@
                     </a>  
                 </div>
 
+                <form method="get"
+                      action="{% url 'main:show_experience' %}"
+                      class="search">
+
+                    <input type="search"
+                            name="title"
+                            value="{{ title_query }}"
+                            placeholder="Cari berdasarkan nama experience"
+                            class="search__input"
+                            aria-label="Cari berdasarkan nama experience">
+                    <button type="submit" class="button">Cari</button>
+
+                </form>
+
                 <div class="experience-grid">
                     {% for experience in experience_list %}
                         <article class="experience-card">
@@ -51,7 +65,7 @@
                                 </div>
 
                                 <div class="experience-actions-side">
-                                    <a href="{% url 'main:edit_experience' experience.id %}" class="button edit-button" style="text-align: center; width: 100%;">
+                                    <a href="{% url 'main:edit_experience' experience.id %}" class="button button-edit" style="text-align: center; width: 100%;">
                                         Edit
                                     </a>
                                     

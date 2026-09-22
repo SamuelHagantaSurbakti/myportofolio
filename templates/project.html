@@ -23,13 +23,13 @@
 
                 <form method="get"
                       action="{% url 'main:show_project' %}"
-                      class="project-search">
+                      class="search">
 
                     <input type="search"
                             name="title"
                             value="{{ title_query }}"
                             placeholder="Cari berdasarkan nama proyek"
-                            class="project-search__input"
+                            class="search__input"
                             aria-label="Cari berdasarkan nama proyek">
                     <button type="submit" class="button">Cari</button>
 
@@ -56,7 +56,7 @@
                                         {% endif %}
                                         {% include "components/project_delete_modal.html" with project=project %}
 
-                                        <a href="{% url 'main:edit_project' project.id %}" class="button edit-button">
+                                        <a href="{% url 'main:edit_project' project.id %}" class="button button-edit">
                                             Edit
                                         </a>
                                     </div>

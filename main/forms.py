@@ -10,7 +10,7 @@ class ProjectForm(ModelForm):
         widget=PasswordInput(
             attrs={
                 "placeholder": "Masukkann Password",
-                "class": "project-form__input", 
+                "class": "form__input", 
                 "autocomplete": "new-password",
             }
         )
