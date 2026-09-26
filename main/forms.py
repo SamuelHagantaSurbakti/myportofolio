@@ -17,6 +17,7 @@ class ProjectForm(ModelForm):
     )
     
     class Meta:
+        
         model = Project
         fields = [
             "title",
@@ -34,8 +35,6 @@ class ProjectForm(ModelForm):
             "image_url": "URL Gambar Proyek",
         }
         
-        
-
         widgets = {
             "title": TextInput(
                 attrs={
