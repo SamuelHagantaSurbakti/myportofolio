@@ -6,7 +6,7 @@ from main.views import show_main
 from main.views import show_project, create_project, get_projects_json,   delete_project, edit_project
 from main.views import show_experience, create_experience, get_experiences_json, delete_experience, edit_experience
 from main.views import register, login_user, logout_user
-from main.views import toggle_star
+from main.views import toggle_project_star, toggle_experience_star
 
 app_name = "main"
 
@@ -32,6 +32,6 @@ urlpatterns = [
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
     
-    path("projects/<uuid:project_id>/star/", toggle_star, name="toggle_star",
-),
+    path("projects/<uuid:project_id>/star/", toggle_project_star, name="toggle_project_star"),
+    path("experiences/<uuid:experience_id>/star/", toggle_experience_star, name="toggle_experience_star"),
 ]

@@ -67,11 +67,20 @@
                                 </div>
 
                                 <div class="experience-actions-side">
-                                    {% if request.user.is_superuser %}
-                                        {% include "components/experience_delete_modal.html" with experience=experience %}
+
+                                    <!-- STAR KOMPONEN -->
+                                    {% include "components/experience_star.html" with experience=experience %}
+
+                                    {% if is_editor or request.user.is_superuser%}
+                                        <!-- EDIT KOMPONEN -->
                                          <a href="{% url 'main:edit_experience' experience.id %}" class="button button-edit" style="text-align: center; width: 100%;">
                                             Edit
                                         </a>
+                                    {%  endif %}
+                                    {% if request.user.is_superuser %}
+
+                                        <!-- DELETE KOMPONEN -->
+                                        {% include "components/experience_delete_modal.html" with experience=experience %}
                                     {% endif %}
                                 </div>
 

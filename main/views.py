@@ -42,6 +42,8 @@ def show_main(request):
 
 def show_experience(request):
     
+    is_editor = request.user.groups.filter(name="Editor").exists()
+    
     json_response = get_experiences_json(request)
         
     experiences = serializers.deserialize(
@@ -58,6 +60,7 @@ def show_experience(request):
         "name": "Samuel Haganta Surbakti",
         "experience_list": experiences,
         "title_query": title_query,
+        "is_editor" : is_editor,
     }
 
     return render(request, "experience.html", context)
@@ -96,7 +99,7 @@ def get_experiences_json(request):
     if title_query:
         experiences = experiences.filter(title__icontains=title_query)
 
-    experiences_json = serializers.serialize("json", experiences)
+    experiences_json = serializers.serialize("json", experiences, use_natural_foreign_keys=True)
     return HttpResponse(experiences_json, content_type="application/json")
 
 
@@ -115,7 +118,15 @@ def delete_experience(request, experience_id):
 
     return redirect("main:show_experience")
 
+
+@login_required(login_url="/login/")
 def edit_experience(request, experience_id):
+    
+    is_editor = request.user.groups.filter(name="Editor").exists()
+    if (not (is_editor or request.user.is_superuser)):
+        raise PermissionDenied
+    
+    
     experience = get_object_or_404(Experience, pk=experience_id)
     
     form = ExperienceForm(request.POST or None, instance=experience)
@@ -131,6 +142,17 @@ def edit_experience(request, experience_id):
     }
     return render(request, "edit_experience.html", context)
 
+@login_required(login_url="/login/")
+def toggle_experience_star(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+
+    if request.method == "POST":
+        if request.user in experience.starred_by.all():
+            experience.starred_by.remove(request.user)
+        else:
+            experience.starred_by.add(request.user)
+
+    return redirect("main:show_experience")
 
 # /////////////////////////////////////////////////////////////////
 # /////////////////////////////////////////////////////////////////
@@ -139,6 +161,8 @@ def edit_experience(request, experience_id):
 # /////////////////////////////////////////////////////////////////
 
 def show_project(request):
+    
+    is_editor = request.user.groups.filter(name="Editor").exists()
     
     json_response = get_projects_json(request)
     
@@ -154,6 +178,7 @@ def show_project(request):
         "name": "Samuel Haganta Surbakti",
         "project_list": projects,
         "title_query": title_query,
+        "is_editor" : is_editor,
     }
     
     return render(request, "project.html", context)
@@ -211,7 +236,15 @@ def delete_project(request, project_id):
 
     return redirect("main:show_project")
 
+@login_required(login_url="/login/")
 def edit_project(request, project_id):
+    
+    is_editor = request.user.groups.filter(name="Editor").exists()
+    
+    if  not (is_editor or request.user.is_superuser):
+        raise PermissionDenied
+    
+    
     project = get_object_or_404(Project, pk=project_id)
     
     form = ProjectForm(request.POST or None, instance=project)
@@ -268,7 +301,7 @@ def logout_user(request):
 
 
 @login_required(login_url="/login/")
-def toggle_star(request, project_id):
+def toggle_project_star(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
     if request.method == "POST":
