@@ -14,11 +14,15 @@
                 
                 <div class="project-header">
                     <h2>Projek Saya</h2>
+
+                    {% if request.user.is_superuser %}
                     <a href="{% url 'main:create_project' %}"
                        class="button add-button">
                         <span aria-hidden="true">+</span>
                         Tambah Proyek
                     </a>
+                    {% endif %}
+
                 </div>
 
                 <form method="get"
@@ -54,9 +58,14 @@
                                         {% if project.project_link %}
                                             <a href="{{ project.project_link }}" class="button">Lihat Project</a>
                                         {% endif %}
-                                        {% include "components/project_delete_modal.html" with project=project %}
 
-                                        <a href="{% url 'main:edit_project' project.id %}" class="button button-edit">
+                                        <!-- STAR KOMPONEN-->
+                                        {% include "components/project_star.html" with project=project %}
+                                        <!-- DELETE KOMPONEN -->
+                                        {% if request.user.is_supeuuser%}
+                                            {% include "components/project_delete_modal.html" with project=project %}
+                                            <a href="{% url 'main:edit_project' project.id %}" class="button button-edit">
+                                        {% endif %}
                                             Edit
                                         </a>
                                     </div>

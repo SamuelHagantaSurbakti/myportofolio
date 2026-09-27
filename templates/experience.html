@@ -15,11 +15,13 @@
                 <p class="section-kicker">Perjalanan saya sejauh ini</p>
                 <div class="experience-header">
                     <h2>Experience Saya</h2>
+                    {% if requeset.user.is_superuser %}
                     <a href="{% url 'main:create_experience' %}"
                         class="button add-button">
                         <span aria-hidden="true">+</span>
                         Tambah Experience
-                    </a>  
+                    </a> 
+                    {% endif %}
                 </div>
 
                 <form method="get"
@@ -68,8 +70,9 @@
                                     <a href="{% url 'main:edit_experience' experience.id %}" class="button button-edit" style="text-align: center; width: 100%;">
                                         Edit
                                     </a>
-                                    
-                                    {% include "components/experience_delete_modal.html" with experience=experience %}
+                                    {% if requeset.user.is_superuser %}
+                                        {% include "components/experience_delete_modal.html" with experience=experience %}
+                                    {% endif %}
                                 </div>
 
                             </div>
