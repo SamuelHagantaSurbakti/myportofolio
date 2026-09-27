@@ -62,7 +62,7 @@
                                         <!-- STAR KOMPONEN-->
                                         {% include "components/project_star.html" with project=project %}
                                         <!-- DELETE KOMPONEN -->
-                                        {% if request.user.is_supeuuser%}
+                                        {% if request.user.is_superuser%}
                                             {% include "components/project_delete_modal.html" with project=project %}
                                             <a href="{% url 'main:edit_project' project.id %}" class="button button-edit">
                                         {% endif %}
