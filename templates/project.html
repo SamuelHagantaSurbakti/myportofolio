@@ -43,14 +43,16 @@
                         
                     {% for project in project_list %}
                         <div class="project-item">
-                            <img src="{{ project.image_url }}" alt="{{ project.title }}" class="project-img">
+
+                            <div class="project-thumb">
+                                <img src="{{ project.image_url }}" alt="{{ project.title }}" class="project-img">
+                            </div>
                             
-                            <div class="project-overlay">
+                            <div class="project-body">
                                 <h3>{{ project.title }}</h3>
+
                                 <!-- DEKSRIPSI -->
-                                <p style="color: var(--paper); font-size: 0.85rem; margin-bottom: 0.5rem; opacity: 0.9; padding: 0 1rem;">
-                                    {{ project.description }} 
-                                </p>
+                                <p class="project-desc">{{ project.description }}</p>
                                 <p class="project-tech">{{ project.tech_stack }}</p>
 
                                 <div class="project-card-actions">
