@@ -3,14 +3,14 @@ from venv import create
 from django.urls import path
 
 from main.views import show_main
-from main.views import show_project, create_project, get_projects_json,   delete_project, edit_project
+from main.views import show_project, create_project, get_projects_json,   delete_project, edit_project, create_project_ajax
 from main.views import show_experience, create_experience, get_experiences_json, delete_experience, edit_experience
 from main.views import register, login_user, logout_user
 from main.views import toggle_project_star, toggle_experience_star
 
 app_name = "main"
 
-urlpatterns = [
+urlpatterns = [ 
     path("", show_main, name="show_main"),
     
     path("experience/", show_experience, name="show_experience"),
@@ -26,6 +26,7 @@ urlpatterns = [
     path("api/projects/", get_projects_json, name="get_projects_json"),
     path("projects/<uuid:project_id>/delete/",delete_project,name="delete_project"),
     path('project/edit/<uuid:project_id>/', edit_project, name='edit_project'),
+    path("projects/add-ajax/", create_project_ajax, name="create_project_ajax"),
     
     
     path("register/", register, name="register"),

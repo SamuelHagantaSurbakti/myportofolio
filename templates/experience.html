@@ -15,7 +15,7 @@
                 <p class="section-kicker">Perjalanan saya sejauh ini</p>
                 <div class="experience-header">
                     <h2>Experience Saya</h2>
-                    {% if requeset.user.is_superuser %}
+                    {% if request.user.is_superuser %}
                     <a href="{% url 'main:create_experience' %}"
                         class="button add-button">
                         <span aria-hidden="true">+</span>
