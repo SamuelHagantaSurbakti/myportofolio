@@ -69,6 +69,24 @@ Kelas : PBP D
     Serialization harus dilakukan karena alasan tipe data yang cocok, data yang dikirim dari database bertipe objek QuerySet yang tidak bisa dikirim melalui HttpResponse, tetapi sebaliknya dengan JSON, Httpresponse mendukung data bertipe JSON. Hal lain dan mungkin yang utama addalah karena JSON adalah format data yang universal yang digunakan untuk data delivery melalui internet.
 
 
+### TUGAS 5
+
+1. Jelaskan apa itu debouncing dan mengapa teknik ini penting diterapkan pada fitur pencarian yang menggunakan AJAX!
+
+    Debouncing adalah sebuah teknik meng-delay suatu function call dengan cara suatu fungsi akan hanya dijalankan ketika suatu satuan durasi sudah berlalu tanpa ada function call lainnya. Dalam projek ini diterapkan pada 'searchForm' dan 'searchInput' sehingga kedua elemen html ini akan menunggu suatu interval waktu dulu baru function call dari event listener akan dijalankan. Teknik ini penting karena ia membatasi banyak requets yang bisa diproses di server. Tanpa teknik ini, server bisa saja akan menjadi lebih lama karena kelebihan beban. Selain itu, teknik ini juga berguna untuk mencegah Race Condition.
+
+2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+    fungsi dari keyword await adalah menunggu suatu fungsi asinkronus berjalan, hanya setelah output dari dungsi asinkronus ini didapatkan, baru kode di bawahnya akan dijalankan. Sebelumm kita bisa tahu apa yang terjadi jika tidak menggunakan keyword await, kita harus tahu apa yang akan direturn oleh fungsi asinkronus saat ia belum mendapatkan data yang ingin diambilnya. saat data belum terambil, maka kita akan didberikan sebauh objek Promise yang berguna untuk pegangan bahwa suatu saat Promise ini akan berisikan data yang seharusnya diambil berupa Response. Oleh karena ini, saat kita tidak menggunakan keyword await, kita hanya mendapatkan Promise lalu kodenya terus berlanjut. karena Promise ini bukan objek yang kita mau, maka saat kita mengoperasikan objek ini, maka mungkin saja error. Di kode ini, spesifiknya di project.html, saya menggunakan .json() kepada suatu Response, tetapi karena kita tidak mendapatkan Response melainkan Promise, makan akan terjadi error.
+
+3. Jelaskan apa itu serangan XSS (Cross-Site Scripting) dan mengapa data yang ditampilkan melalui AJAX/JavaScript lebih rentan terhadap serangan ini daripada data yang ditampilkan langsung melalui template Django!
+
+   XSS adalah termasuk serangan berupa injection biasanya berupa JavaScript, dia memanfaatkan kerentanan dari bagaimana browser akan menjalankan semua script di .html .
+   saat scriptnya dijalankan dan kebetulan ada sebuah payload JavaScipt yang berbahaya, maka JavaScript tetap akan mengeksekusinya. payload JavaScript bahaya ini biasanya diinject dari suatu input yang dipunyai oleh user, di projek ini injectionnya bisa dari inupt form. 
+
+   Alasan kenapa AJAX lebih rentan terhadap serangan ini adalah karena konsep dasar AJAX yang menyisipkan elemen html langsung ke DOM. Pada prosesnya, AJAX akan mengambil data dari berupa JSON dan Scriptnya akan dijalankan, data yang diambil tadi gampang dimanipulasi untuk menjadi payload berbahaya karena JavaScript tidak punya Auto Escaping. Sementara jika kita langsung mengambil dari database, XSS sudah dihandle dengan Auto Escaping Django sehingga script biasa tadi hanya akan tampil sebagai teks murni.
+
+
 ### AI disclosure 
 Saya menggunakan AI khususnya model Gemini 3.1 Pro untuk membantu saya dalam mengerjakan tugas kedua ini. Saya menggunakan AI untuk membantu saya dalam mengatasi error dan menggenerate sebagian dari kode html.
 
