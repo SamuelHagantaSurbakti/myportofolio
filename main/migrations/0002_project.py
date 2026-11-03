@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ("description", models.TextField()),
                 ("tech_stack", models.CharField(max_length=100)),
                 ("image_url", models.CharField(max_length=255)),
-                ("project_link", models.URLField(blank=True, null=True)),
+                ("project_url", models.URLField(blank=True, null=True)),
             ],
         ),
     ]

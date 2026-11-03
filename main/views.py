@@ -2,8 +2,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.core import serializers
-from django.http import HttpResponse
 from django.template import context
 from django.conf import settings
 from django.http import JsonResponse
@@ -13,6 +11,7 @@ import json
 from django.contrib.auth.decorators import login_required  
 from django.core.exceptions import PermissionDenied       
 from django.views.decorators.http import require_POST 
+
 
 
 import os 
@@ -258,7 +257,7 @@ def get_projects_json(request):
                 "title": project.title,
                 "description": project.description,
                 "tech_stack": project.tech_stack,
-                "project_link": project.project_link,
+                "project_url": project.project_url,
                 "image_url": project.image_url,
                 
                 "star_count": starred_users.count(),
@@ -317,7 +316,7 @@ def create_project_ajax(request):
             status=403,
         )
 
-    form = ProjectForm(request.POST)
+    form = ProjectForm(request.POST )
     if form.is_valid():
         project = form.save()
         return JsonResponse(

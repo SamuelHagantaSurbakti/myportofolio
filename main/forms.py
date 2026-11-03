@@ -22,14 +22,16 @@ class ProjectForm(ModelForm):
     def clean_title(self):
         title = strip_tags(self.cleaned_data["title"]).strip()
         if not title:
-            raise ValidationError("Nama proyek tidak boleh hanya berisi tag HTML.")
+            raise ValidationError("Nama proyek tidak boleh hanya berisi tag HTML")
         return title
-
+        
+    
+    def clean_description(self):
+        return strip_tags(self.cleaned_data["desciption"]).strip()
+    
     def clean_tech_stack(self):
         return strip_tags(self.cleaned_data["tech_stack"]).strip()
-
-    def clean_description(self):
-        return strip_tags(self.cleaned_data["description"]).strip()
+    
     
     class Meta:
         
@@ -38,7 +40,7 @@ class ProjectForm(ModelForm):
             "title",
             "description",
             "tech_stack",
-            "project_link",
+            "project_url",
             "image_url",
         ]
 
@@ -46,7 +48,7 @@ class ProjectForm(ModelForm):
             "title": "Nama Proyek",
             "description": "Deskripsi Proyek",
             "tech_stack": "Teknologi yang Digunakan",
-            "project_link": "URL Proyek",
+            "project_url": "URL Proyek",
             "image_url": "URL Gambar Proyek",
         }
         
@@ -68,7 +70,7 @@ class ProjectForm(ModelForm):
                     "placeholder": "Django, Python, HTML, CSS",
                 }
             ),
-            "project_link": URLInput(
+            "project_url": URLInput(
                 attrs={
                     "placeholder": "https://github.com/kakBurhan/burhanquestv4",
                 }

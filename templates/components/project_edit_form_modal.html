@@ -1,0 +1,54 @@
+<div id="edit-project-modal"
+     class="project-form-modal"
+     popover="auto"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="edit-project-modal-title">
+    <button type="button"
+            class="project-form-modal__backdrop"
+            popovertarget="edit-project-modal"
+            popovertargetaction="hide"
+            aria-label="Tutup form edit proyek"></button>
+
+    <div class="project-form-modal__content">
+        <button type="button"
+                class="project-form-modal__close"
+                popovertarget="edit-project-modal"
+                popovertargetaction="hide"
+                aria-label="Tutup form edit proyek">×</button>
+
+        <h2 id="edit-project-modal-title">Edit Proyek</h2>
+        <form id="edit-project-form" class="project-form">
+            <input type="hidden" name="id" id="edit-project-id">
+
+            <div class="form-group">
+                <label for="edit-title">Title</label>
+                <input type="text" id="edit-title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-description">Description</label>
+                <textarea id="edit-description" name="description" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="edit-tech-stack">Tech stack</label>
+                <input type="text" id="edit-tech-stack" name="tech_stack">
+            </div>
+            <div class="form-group">
+                <label for="edit-project-url">Project URL</label>
+                <input type="url" id="edit-project-url" name="project_url">
+            </div>
+            <div class="form-group">
+                <label for="edit-image-url">Image URL</label>
+                <input type="url" id="edit-image-url" name="image_url">
+            </div>
+
+            <div class="project-form-modal__actions">
+                <button type="button"
+                        class="button button-secondary"
+                        popovertarget="edit-project-modal"
+                        popovertargetaction="hide">Batal</button>
+                <button type="submit" class="button">Simpan Perubahan</button>
+            </div>
+        </form>
+    </div>
+</div>
